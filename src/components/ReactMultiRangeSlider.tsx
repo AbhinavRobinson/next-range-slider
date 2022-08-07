@@ -12,9 +12,6 @@ export interface IReactMultiRangeSliderProps extends React.DetailedHTMLProps<Rea
   inputRProps?: IReactInputProps;
 }
 
-const darkWrapperStyles: CSSProperties = {};
-const darkInputStyles: CSSProperties = {};
-
 const updateInputValues = (e: React.FormEvent<HTMLInputElement>) => {
   let _t: any = e.target; // don't know type of this, but it works. :P
   _t.parentNode.style.setProperty(`--${_t.id}`, +_t.value);
@@ -44,9 +41,6 @@ export const ReactMultiRangeSlider: React.FC<IReactMultiRangeSliderProps> = (pro
 
   /** THEME STYLES */
   if (theme === 'dark') {
-    _style = { ..._style, ...darkWrapperStyles };
-    _inputLProps.style = { ..._inputLProps.style, ...darkInputStyles };
-    _inputRProps.style = { ..._inputRProps.style, ...darkInputStyles };
   }
 
   return (
