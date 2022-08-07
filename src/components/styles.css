@@ -1,18 +1,19 @@
 .wrap {
-  /* thumb */
-  --thc: darkorange;
+  /* THumb */
+  /* --thc: darkorange;
   --thfc: red;
   --thd: 2em;
   --thyoff: -25%;
   --thr: calc(var(--thd) / 2);
-  --thbr: calc(var(--thd) / 2);
-  /* track */
-  --tcol: #f5f5f5;
+  --thbr: calc(var(--thd) / 2); */
+  /* Track */
+  /* --tcol: #f5f5f5;
   --tw: 100%;
   --th: 1em;
-  --tbr: var(--thbr);
-  /* range */
-  --rcol: #00bcd4;
+  --tbr: var(--thbr); */
+  /* Range */
+  /* --rcol: #00bcd4; */
+  /* calculated */
   --rdiff: calc(var(--max) - var(--min));
   --ruse: calc(var(--tw) - var(--thd));
   display: grid;
