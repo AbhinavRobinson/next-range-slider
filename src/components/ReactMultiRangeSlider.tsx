@@ -1,51 +1,46 @@
 import React, { CSSProperties } from 'react';
+import './styles.css';
 
-export interface IInputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {}
+export interface IReactInputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {}
 
 export interface IReactMultiRangeSliderProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   theme?: 'default' | 'dark';
   min: number;
   max: number;
   step?: number;
-  inputLProps?: IInputProps;
-  inputRProps?: IInputProps;
+  inputLProps?: IReactInputProps;
+  inputRProps?: IReactInputProps;
 }
 
-const wrapperStyles: CSSProperties = {
-  display: 'grid',
-  gridTemplateRows: `max-content 1em`,
-  width: '100%',
-  margin: '1em auto',
-  position: 'relative',
-  background: 'white'
-};
 const darkWrapperStyles: CSSProperties = {};
-
-const inputStyles: CSSProperties = {
-  gridColumn: 1,
-  gridRow: 2,
-  background: 'none',
-  color: '#000',
-  font: 'inherit',
-  margin: 0,
-  pointerEvents: 'none',
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  appearance: 'none'
-};
 const darkInputStyles: CSSProperties = {};
+
+const updateInputValues = (e: React.FormEvent<HTMLInputElement>) => {
+  let _t: any = e.target; // don't know type of this, but it works. :P
+  _t.parentNode.style.setProperty(`--${_t.id}`, +_t.value);
+};
+
+const minMaxTags = (min: number, max: number) => {
+  return {
+    '--a': min / 2,
+    '--b': max / 2,
+    '--min': min,
+    '--max': max
+  };
+};
 
 export const ReactMultiRangeSlider: React.FC<IReactMultiRangeSliderProps> = (props) => {
   let { style, theme, min, max, step, inputLProps, inputRProps, ...rest } = props;
 
   /** EXTRACT PROPS */
-  let _inputLProps: IInputProps = { ...inputLProps },
-    _inputRProps: IInputProps = { ...inputRProps };
+  let _inputLProps: IReactInputProps = { ...inputLProps },
+    _inputRProps: IReactInputProps = { ...inputRProps };
 
   /** OVERRIDE PROPS */
-  let _style: CSSProperties = { ...style, ...wrapperStyles };
-  _inputLProps.style = { ..._inputLProps.style, ...inputStyles };
-  _inputRProps.style = { ..._inputRProps.style, ...inputStyles };
+  let _style: CSSProperties = {
+    ...style,
+    ...minMaxTags(min, max)
+  } as CSSProperties;
 
   /** THEME STYLES */
   if (theme === 'dark') {
@@ -55,9 +50,9 @@ export const ReactMultiRangeSlider: React.FC<IReactMultiRangeSliderProps> = (pro
   }
 
   return (
-    <div role="group" aria-labelledby="range-selector" style={_style} {...rest}>
-      <input id="l" type="range" {...{ max, min, step }} {..._inputLProps} />
-      <input id="r" type="range" {...{ max, min, step }} {..._inputRProps} />
+    <div className="wrap" role="group" aria-labelledby="multi-lbl" style={_style} {...rest}>
+      <input id="a" type="range" onInput={updateInputValues} {...{ max, min, step }} {..._inputLProps} />
+      <input id="b" type="range" onInput={updateInputValues} {...{ max, min, step }} {..._inputRProps} />
     </div>
   );
 };
