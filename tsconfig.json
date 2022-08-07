@@ -4,9 +4,17 @@
     "declaration": true,
     "esModuleInterop": true,
     "jsx": "preserve",
-    "lib": ["es5", "es2015", "es2016", "dom", "esnext"],
-    "types": ["node"],
-    "module": "es2015",
+    "lib": [
+      "es5",
+      "es2015",
+      "es2016",
+      "dom",
+      "esnext"
+    ],
+    "types": [
+      "node"
+    ],
+    "module": "ES2015",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noUnusedLocals": true,
@@ -15,5 +23,7 @@
     "strict": true,
     "target": "es6"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*"
+  ]
 }
