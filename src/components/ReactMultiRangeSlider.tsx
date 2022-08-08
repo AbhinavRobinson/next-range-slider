@@ -5,7 +5,7 @@ export type ThumbProps = {
   background?: string;
   focusBackground?: string;
   diameter?: string;
-  yOffset?: string;
+  transform?: string;
   radius?: string;
   borderRadius?: string;
   border?: string;
@@ -15,6 +15,7 @@ export type TrackProps = {
   background?: string;
   width?: string;
   height?: string;
+  transform?: string;
   borderRadius?: string;
   border?: string;
   margin?: string;
@@ -24,6 +25,7 @@ export type TrackProps = {
 export type RangeProps = {
   background?: string;
   border?: string;
+  transform?: string;
 };
 
 export type ReactMultiRangeSliderOptions = {
@@ -50,12 +52,14 @@ const presets = {
     '--thfc': '#444',
     '--tcol': '#ccc',
     '--rcol': '#555',
+    '--rt': 'none',
     '--rb': 'none',
     '--thd': '2rem',
-    '--thy': '-25%',
+    '--tht': 'translateY(-25%)',
     '--thr': '1rem',
     '--thbr': '1rem',
     '--thb': 'none',
+    '--tt': 'none',
     '--tw': '100%',
     '--th': '1rem',
     '--tm': '1rem auto',
@@ -68,12 +72,14 @@ const presets = {
     '--thfc': '#fff',
     '--tcol': '#333',
     '--rcol': '#888',
+    '--rt': 'none',
     '--rb': 'none',
     '--thd': '2rem',
-    '--thy': '-25%',
+    '--tht': 'translateY(-25%)',
     '--thr': '1rem',
     '--thbr': '1rem',
     '--thb': 'none',
+    '--tt': 'none',
     '--tw': '100%',
     '--th': '1rem',
     '--tm': '1rem auto',
@@ -97,6 +103,29 @@ function minMaxTags(min: number, max: number) {
   };
 }
 
+function getTheme(theme: 'default' | 'dark', overrides?: Omit<ReactMultiRangeSliderOptions, 'leftInputProps' | 'rightInputProps'>) {
+  return {
+    '--thc': overrides?.thumb?.background ?? presets[theme]['--thc'],
+    '--thfc': overrides?.thumb?.focusBackground ?? presets[theme]['--thfc'],
+    '--tcol': overrides?.track?.background ?? presets[theme]['--tcol'],
+    '--rcol': overrides?.range?.background ?? presets[theme]['--rcol'],
+    '--rt': overrides?.track?.transform ?? presets[theme]['--rt'],
+    '--rb': overrides?.range?.border ?? presets[theme]['--rb'],
+    '--thd': overrides?.thumb?.diameter ?? presets[theme]['--thd'],
+    '--tht': overrides?.thumb?.transform ?? presets[theme]['--tht'],
+    '--thr': overrides?.thumb?.radius ?? presets[theme]['--thr'],
+    '--thbr': overrides?.thumb?.borderRadius ?? presets[theme]['--thbr'],
+    '--thb': overrides?.thumb?.border ?? presets[theme]['--thb'],
+    '--tt': overrides?.track?.transform ?? presets[theme]['--tt'],
+    '--tw': overrides?.track?.width ?? presets[theme]['--tw'],
+    '--th': overrides?.track?.height ?? presets[theme]['--th'],
+    '--tm': overrides?.track?.margin ?? presets[theme]['--tm'],
+    '--tp': overrides?.track?.padding ?? presets[theme]['--tp'],
+    '--tb': overrides?.track?.border ?? presets[theme]['--tb'],
+    '--tbr': overrides?.track?.borderRadius ?? presets[theme]['--tbr']
+  };
+}
+
 export function ReactMultiRangeSlider(props: ReactMultiRangeSliderProps): JSX.Element {
   let { style, min, max, step, options, ...wrapperProps } = props;
   let { theme = 'default', leftInputProps, rightInputProps } = { ...options };
@@ -106,12 +135,12 @@ export function ReactMultiRangeSlider(props: ReactMultiRangeSliderProps): JSX.El
     _rightInputProps: ReactInputProps = { ...rightInputProps };
   let _style = {
     ...style,
-    ...presets[theme],
+    ...getTheme(theme, options),
     ...minMaxTags(min, max)
   } as CSSProperties;
 
   return (
-    <div className="wrap" role="group" aria-labelledby="multi-lbl" style={_style} {...wrapperProps}>
+    <div className="wrap" role="group" style={_style} {...wrapperProps}>
       <input id="a" type="range" onInput={updateInputValues} {...{ max, min, step }} {..._leftInputProps} />
       <input id="b" type="range" onInput={updateInputValues} {...{ max, min, step }} {..._rightInputProps} />
     </div>
