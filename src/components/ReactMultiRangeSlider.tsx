@@ -1,56 +1,47 @@
 import React, { CSSProperties } from 'react';
 import './styles.css';
 
-export interface IThumbProps {
-  color?: string;
-  focusColor?: string;
+export type ThumbProps = {
+  background?: string;
+  focusBackground?: string;
   diameter?: string;
   yOffset?: string;
   radius?: string;
   borderRadius?: string;
-}
+  border?: string;
+};
 
-export interface ITrackProps {
-  color?: string;
+export type TrackProps = {
+  background?: string;
   width?: string;
   height?: string;
   borderRadius?: string;
-}
+  border?: string;
+  margin?: string;
+  padding?: string;
+};
 
-export interface IRangeProps {
-  color?: string;
-}
+export type RangeProps = {
+  background?: string;
+  border?: string;
+};
 
-export interface IReactMultiRangeSliderOptions {
+export type ReactMultiRangeSliderOptions = {
   theme?: 'default' | 'dark';
-  thumb?: IThumbProps;
-  track?: ITrackProps;
-  range?: IRangeProps;
-  leftInputProps?: IReactInputProps;
-  rightInputProps?: IReactInputProps;
-}
+  thumb?: ThumbProps;
+  track?: TrackProps;
+  range?: RangeProps;
+  leftInputProps?: ReactInputProps;
+  rightInputProps?: ReactInputProps;
+};
 
-export interface IReactInputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {}
+export type ReactInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
-export interface IReactMultiRangeSliderProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export type ReactMultiRangeSliderProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   min: number;
   max: number;
   step?: number;
-  options?: IReactMultiRangeSliderOptions;
-}
-
-const updateInputValues = (e: React.FormEvent<HTMLInputElement>) => {
-  let _t: HTMLInputElement = e.target as HTMLInputElement;
-  _t.parentElement?.style.setProperty(`--${_t.id}`, _t.value);
-};
-
-const minMaxTags = (min: number, max: number) => {
-  return {
-    '--a': min / 2,
-    '--b': max / 2,
-    '--min': min,
-    '--max': max
-  };
+  options?: ReactMultiRangeSliderOptions;
 };
 
 const presets = {
@@ -59,12 +50,17 @@ const presets = {
     '--thfc': '#444',
     '--tcol': '#ccc',
     '--rcol': '#555',
+    '--rb': 'none',
     '--thd': '2rem',
-    '--thyoff': '-25%',
+    '--thy': '-25%',
     '--thr': '1rem',
     '--thbr': '1rem',
+    '--thb': 'none',
     '--tw': '100%',
     '--th': '1rem',
+    '--tm': '1rem auto',
+    '--tp': '0',
+    '--tb': 'none',
     '--tbr': '1rem'
   },
   dark: {
@@ -72,24 +68,43 @@ const presets = {
     '--thfc': '#fff',
     '--tcol': '#333',
     '--rcol': '#888',
+    '--rb': 'none',
     '--thd': '2rem',
-    '--thyoff': '-25%',
+    '--thy': '-25%',
     '--thr': '1rem',
     '--thbr': '1rem',
+    '--thb': 'none',
     '--tw': '100%',
     '--th': '1rem',
+    '--tm': '1rem auto',
+    '--tp': '0',
+    '--tb': 'none',
     '--tbr': '1rem'
   }
 };
 
-export const ReactMultiRangeSlider: React.FC<IReactMultiRangeSliderProps> = (props) => {
+function updateInputValues(e: React.FormEvent<HTMLInputElement>) {
+  let _t = e.target as HTMLInputElement;
+  _t.parentElement?.style.setProperty(`--${_t.id}`, _t.value);
+}
+
+function minMaxTags(min: number, max: number) {
+  return {
+    '--a': min / 2,
+    '--b': max / 2,
+    '--min': min,
+    '--max': max
+  };
+}
+
+export function ReactMultiRangeSlider(props: ReactMultiRangeSliderProps): JSX.Element {
   let { style, min, max, step, options, ...wrapperProps } = props;
   let { theme = 'default', leftInputProps, rightInputProps } = { ...options };
 
   /** OVERRIDE PROPS */
-  let _leftInputProps: IReactInputProps = { ...leftInputProps },
-    _rightInputProps: IReactInputProps = { ...rightInputProps };
-  let _style: CSSProperties = {
+  let _leftInputProps: ReactInputProps = { ...leftInputProps },
+    _rightInputProps: ReactInputProps = { ...rightInputProps };
+  let _style = {
     ...style,
     ...presets[theme],
     ...minMaxTags(min, max)
@@ -101,4 +116,4 @@ export const ReactMultiRangeSlider: React.FC<IReactMultiRangeSliderProps> = (pro
       <input id="b" type="range" onInput={updateInputValues} {...{ max, min, step }} {..._rightInputProps} />
     </div>
   );
-};
+}
