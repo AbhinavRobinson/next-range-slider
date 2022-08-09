@@ -1,6 +1,8 @@
 import React, { CSSProperties } from 'react';
 import './styles.css';
 
+export type Themes = 'default' | 'dark';
+
 export type ThumbProps = {
   background?: string;
   focusBackground?: string;
@@ -29,7 +31,7 @@ export type RangeProps = {
 };
 
 export type ReactMultiRangeSliderOptions = {
-  theme?: 'default' | 'dark';
+  theme?: Themes;
   thumb?: ThumbProps;
   track?: TrackProps;
   range?: RangeProps;
@@ -96,14 +98,14 @@ function updateInputValues(e: React.FormEvent<HTMLInputElement>) {
 
 function minMaxTags(min: number, max: number) {
   return {
-    '--a': min / 2,
-    '--b': max / 2,
+    '--a': min,
+    '--b': max,
     '--min': min,
     '--max': max
   };
 }
 
-function getTheme(theme: 'default' | 'dark', overrides?: Omit<ReactMultiRangeSliderOptions, 'leftInputProps' | 'rightInputProps'>) {
+function getTheme(theme: Themes, overrides?: Omit<ReactMultiRangeSliderOptions, 'leftInputProps' | 'rightInputProps'>) {
   return {
     '--thc': overrides?.thumb?.background ?? presets[theme]['--thc'],
     '--thfc': overrides?.thumb?.focusBackground ?? presets[theme]['--thfc'],
@@ -129,6 +131,10 @@ function getTheme(theme: 'default' | 'dark', overrides?: Omit<ReactMultiRangeSli
 export function ReactMultiRangeSlider(props: ReactMultiRangeSliderProps): JSX.Element {
   let { style, min, max, step, options, ...wrapperProps } = props;
   let { theme = 'default', leftInputProps, rightInputProps } = { ...options };
+
+  /** SANITY CHECKS */
+  if (min > max) return <div style={{ color: 'red', backgroundColor: 'white', fontWeight: 'bold' }}>Min &gt; Max, misconsfigured props</div>;
+  if (step === undefined || step < 1) step = 1;
 
   /** OVERRIDE PROPS */
   let _leftInputProps: ReactInputProps = { ...leftInputProps },
