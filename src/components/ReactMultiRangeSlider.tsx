@@ -13,6 +13,7 @@ export type ThumbProps = {
   focusBackground?: string;
   width?: string;
   height?: string;
+  /** defauts to Y(-25%) in theme */
   transform?: string;
   borderRadius?: string;
   border?: string;
@@ -88,6 +89,8 @@ const presets = {
   }
 };
 
+const miscStyle = { color: 'red', backgroundColor: 'white', fontWeight: 'bold' };
+
 function updateInputValues(e: React.FormEvent<HTMLInputElement>) {
   let _t = e.target as HTMLInputElement;
   _t.parentElement?.style.setProperty(`--${_t.id}`, _t.value);
@@ -103,6 +106,7 @@ function minMaxTags(min: number, max: number) {
 }
 
 function getTheme(theme: Themes, overrides?: Omit<ReactMultiRangeSliderOptions, 'leftInputProps' | 'rightInputProps'>) {
+  if (!Object.keys(presets).includes(theme)) theme = 'default';
   return {
     '--thc': overrides?.thumb?.background ?? presets[theme]['--thc'],
     '--thfc': overrides?.thumb?.focusBackground ?? presets[theme]['--thfc'],
@@ -129,7 +133,7 @@ export function ReactMultiRangeSlider(props: ReactMultiRangeSliderProps): JSX.El
   let { theme = 'default', leftInputProps, rightInputProps } = { ...options };
 
   /** SANITY CHECKS */
-  if (min > max) return <div style={{ color: 'red', backgroundColor: 'white', fontWeight: 'bold' }}>Min &gt; Max, misconsfigured props</div>;
+  if (min > max) return <div style={miscStyle}>Min &gt; Max, misconsfigured props</div>;
   if (step === undefined || step < 1) step = 1;
 
   /** OVERRIDE PROPS */
