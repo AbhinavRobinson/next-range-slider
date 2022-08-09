@@ -1,10 +1,10 @@
 .wrap {
   --rdiff: calc(var(--max) - var(--min));
-  --ruse: calc(var(--tw) - var(--thd));
+  --ruse: calc(var(--tw) - (var(--thw) / 2));
   display: grid;
+  position: relative;
   grid-template: repeat(2, -webkit-max-content) var(--th) / 1fr 1fr;
   grid-template: repeat(2, max-content) var(--th) / 1fr 1fr;
-  position: relative;
   margin: var(--tm);
   width: var(--tw);
   background: linear-gradient(0deg, var(--tcol) var(--th), transparent 0);
@@ -17,17 +17,17 @@
 .wrap::after {
   grid-column: 1 / span 2;
   grid-row: 3;
+  content: '';
   background: var(--rcol);
   border: var(--rb);
   transform: var(--rt);
-  content: '';
 }
 .wrap::before {
-  margin-left: calc(var(--thr) + (var(--a) - var(--min)) / var(--rdiff) * var(--ruse));
+  margin-left: calc((var(--thw) / 4) + (var(--a) - var(--min)) / var(--rdiff) * var(--ruse));
   width: calc((var(--b) - var(--a)) / var(--rdiff) * var(--ruse));
 }
 .wrap::after {
-  margin-left: calc(var(--thr) + (var(--b) - var(--min)) / var(--rdiff) * var(--ruse));
+  margin-left: calc((var(--thw) / 4) + (var(--b) - var(--min)) / var(--rdiff) * var(--ruse));
   width: calc((var(--a) - var(--b)) / var(--rdiff) * var(--ruse));
 }
 
@@ -63,24 +63,24 @@ input[type='range']::-moz-range-track {
   background: none;
 }
 input[type='range']::-webkit-slider-thumb {
-  width: var(--thd);
-  height: var(--thd);
+  pointer-events: auto;
+  cursor: pointer;
+  width: var(--thw);
+  height: var(--thh);
   transform: var(--tht);
   background: var(--thc);
   border-radius: var(--thbr);
   border: var(--thb);
-  pointer-events: auto;
-  cursor: pointer;
 }
 input[type='range']::-moz-range-thumb {
-  width: var(--thd);
-  height: var(--thd);
+  pointer-events: auto;
+  cursor: pointer;
+  width: var(--thw);
+  height: var(--thh);
   transform: var(--tht);
   background: var(--thc);
   border-radius: var(--thbr);
   border: var(--thb);
-  pointer-events: auto;
-  cursor: pointer;
 }
 
 input[type='range']:focus {

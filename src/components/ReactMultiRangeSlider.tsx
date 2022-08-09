@@ -3,12 +3,17 @@ import './styles.css';
 
 export type Themes = 'default' | 'dark';
 
+export type RangeProps = {
+  background?: string;
+  border?: string;
+};
+
 export type ThumbProps = {
   background?: string;
   focusBackground?: string;
-  diameter?: string;
+  width?: string;
+  height?: string;
   transform?: string;
-  radius?: string;
   borderRadius?: string;
   border?: string;
 };
@@ -22,12 +27,6 @@ export type TrackProps = {
   border?: string;
   margin?: string;
   padding?: string;
-};
-
-export type RangeProps = {
-  background?: string;
-  border?: string;
-  transform?: string;
 };
 
 export type ReactMultiRangeSliderOptions = {
@@ -54,11 +53,10 @@ const presets = {
     '--thfc': '#444',
     '--tcol': '#ccc',
     '--rcol': '#555',
-    '--rt': 'none',
     '--rb': 'none',
-    '--thd': '2rem',
+    '--thw': '2rem',
+    '--thh': '2rem',
     '--tht': 'translateY(-25%)',
-    '--thr': '1rem',
     '--thbr': '1rem',
     '--thb': 'none',
     '--tt': 'none',
@@ -74,11 +72,10 @@ const presets = {
     '--thfc': '#fff',
     '--tcol': '#333',
     '--rcol': '#888',
-    '--rt': 'none',
     '--rb': 'none',
-    '--thd': '2rem',
+    '--thw': '2rem',
+    '--thh': '2rem',
     '--tht': 'translateY(-25%)',
-    '--thr': '1rem',
     '--thbr': '1rem',
     '--thb': 'none',
     '--tt': 'none',
@@ -111,11 +108,10 @@ function getTheme(theme: Themes, overrides?: Omit<ReactMultiRangeSliderOptions, 
     '--thfc': overrides?.thumb?.focusBackground ?? presets[theme]['--thfc'],
     '--tcol': overrides?.track?.background ?? presets[theme]['--tcol'],
     '--rcol': overrides?.range?.background ?? presets[theme]['--rcol'],
-    '--rt': overrides?.track?.transform ?? presets[theme]['--rt'],
     '--rb': overrides?.range?.border ?? presets[theme]['--rb'],
-    '--thd': overrides?.thumb?.diameter ?? presets[theme]['--thd'],
+    '--thw': overrides?.thumb?.width ?? presets[theme]['--thw'],
+    '--thh': overrides?.thumb?.height ?? presets[theme]['--thh'],
     '--tht': overrides?.thumb?.transform ?? presets[theme]['--tht'],
-    '--thr': overrides?.thumb?.radius ?? presets[theme]['--thr'],
     '--thbr': overrides?.thumb?.borderRadius ?? presets[theme]['--thbr'],
     '--thb': overrides?.thumb?.border ?? presets[theme]['--thb'],
     '--tt': overrides?.track?.transform ?? presets[theme]['--tt'],
