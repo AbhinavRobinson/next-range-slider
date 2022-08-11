@@ -1,1 +1,1 @@
-export * from './ReactMultiRangeSlider';
+export * from './ReactRangeSlider';

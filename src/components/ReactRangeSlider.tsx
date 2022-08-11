@@ -13,7 +13,7 @@ export type ThumbProps = {
   focusBackground?: string;
   width?: string;
   height?: string;
-  /** defauts to Y(-25%) in theme */
+  /** defauts to Y(-25%) in preset themes */
   transform?: string;
   borderRadius?: string;
   border?: string;
@@ -30,7 +30,7 @@ export type TrackProps = {
   padding?: string;
 };
 
-export type ReactMultiRangeSliderOptions = {
+export type ReactRangeSliderOptions = {
   theme?: Themes;
   thumb?: ThumbProps;
   track?: TrackProps;
@@ -41,11 +41,11 @@ export type ReactMultiRangeSliderOptions = {
 
 export type ReactInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
-export type ReactMultiRangeSliderProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+export type ReactRangeSliderProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   min: number;
   max: number;
   step?: number;
-  options?: ReactMultiRangeSliderOptions;
+  options?: ReactRangeSliderOptions;
 };
 
 const presets = {
@@ -105,7 +105,7 @@ function minMaxTags(min: number, max: number) {
   };
 }
 
-function getTheme(theme: Themes, overrides?: Omit<ReactMultiRangeSliderOptions, 'leftInputProps' | 'rightInputProps'>) {
+function getTheme(theme: Themes, overrides?: Omit<ReactRangeSliderOptions, 'leftInputProps' | 'rightInputProps'>) {
   if (!Object.keys(presets).includes(theme)) theme = 'default';
   return {
     '--thc': overrides?.thumb?.background ?? presets[theme]['--thc'],
@@ -128,7 +128,7 @@ function getTheme(theme: Themes, overrides?: Omit<ReactMultiRangeSliderOptions, 
   };
 }
 
-export function ReactMultiRangeSlider(props: ReactMultiRangeSliderProps): JSX.Element {
+export function ReactRangeSlider(props: ReactRangeSliderProps): JSX.Element {
   let { style, min, max, step, options, ...wrapperProps } = props;
   let { theme = 'default', leftInputProps, rightInputProps } = { ...options };
 
