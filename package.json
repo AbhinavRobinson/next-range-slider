@@ -1,5 +1,5 @@
 {
-  "name": "react-range-slider",
+  "name": "next-range-slider",
   "version": "1.0.0",
   "description": "A React component for range slider",
   "main": "dist/cjs/index.js",

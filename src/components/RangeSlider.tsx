@@ -29,7 +29,7 @@ export type TrackProps = {
   padding?: string;
 };
 
-export type ReactRangeSliderOptions = {
+export type RangeSliderOptions = {
   theme?: Themes;
   thumb?: ThumbProps;
   track?: TrackProps;
@@ -40,11 +40,11 @@ export type ReactRangeSliderOptions = {
 
 export type ReactInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
-export type ReactRangeSliderProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+export type RangeSliderProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   min: number;
   max: number;
   step?: number;
-  options?: ReactRangeSliderOptions;
+  options?: RangeSliderOptions;
 };
 
 const presets = {
@@ -83,7 +83,7 @@ function minMaxTags(min: number, max: number) {
   };
 }
 
-function getTheme(theme: Themes, overrides?: Omit<ReactRangeSliderOptions, 'leftInputProps' | 'rightInputProps'>) {
+function getTheme(theme: Themes, overrides?: Omit<RangeSliderOptions, 'leftInputProps' | 'rightInputProps'>) {
   if (!Object.keys(presets).includes(theme)) theme = 'default';
   return {
     '--thc': overrides?.thumb?.background ?? presets[theme]['--thc'],
@@ -106,12 +106,12 @@ function getTheme(theme: Themes, overrides?: Omit<ReactRangeSliderOptions, 'left
   };
 }
 
-export function ReactRangeSlider(props: ReactRangeSliderProps): JSX.Element {
+export function RangeSlider(props: RangeSliderProps): JSX.Element {
   let { style, min, max, step, options, ...wrapperProps } = props;
   let { theme = 'default', leftInputProps, rightInputProps } = { ...options };
 
   /** SANITY CHECKS */
-  if (min > max) throw new Error('react-range-slider: min must be less than max in component props.');
+  if (min > max) throw new Error('next-range-slider: min must be less than max in component props.');
 
   /** OVERRIDE PROPS */
   let _leftInputProps: ReactInputProps = { ...leftInputProps },

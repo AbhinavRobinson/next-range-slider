@@ -1,4 +1,4 @@
-# React Range Slider
+# Next Range Slider
 
 ![Preview Image](docs/images/slider.jpg)
 
@@ -8,18 +8,18 @@ A minimal range slider component for React, compatible with NextJS.
 
 Install using your favorite package manager:
 ```bash
-npm install react-range-slider
+npm install next-range-slider
 ```
 
 Add CSS import to your file or project root (nextjs):
 ```tsx
-import 'react-range-slider/dist/main.css';
+import 'next-range-slider/dist/main.css';
 ```
 
 Import inside component JSX/TSX:
 
 ```tsx
-import { ReactRangeSlider } from 'react-range-slider';
+import { RangeSlider } from 'next-range-slider';
 
 ...
 
@@ -28,7 +28,7 @@ const [high, setHigh] = useState(1000);
 
 ...
 
-<ReactRangeSlider
+<RangeSlider
     min={-1000}
     max={1000}
     step={100}
@@ -49,14 +49,14 @@ const [high, setHigh] = useState(1000);
 ## Prop Types
 
 ```typescript
-type ReactRangeSliderProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+type RangeSliderProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   min: number;
   max: number;
   step?: number;
-  options?: ReactRangeSliderOptions;
+  options?: RangeSliderOptions;
 };
 
-type ReactRangeSliderOptions = {
+type RangeSliderOptions = {
   theme?: Themes;
   thumb?: ThumbProps;
   track?: TrackProps;
@@ -97,4 +97,4 @@ type TrackProps = {
 
 ## Extending Functionality
 
-The component is isolated to the component file `src/components/ReactRangeSlider.tsx` and it's CSS file `main.css`. You can clone and add your own default theme, as well as extend by adding more themes and tweaking css files.
+The component is isolated to the component file `src/components/RangeSlider.tsx` and it's CSS file `main.css`. You can clone and add your own default theme, as well as extend by adding more themes and tweaking css files.
