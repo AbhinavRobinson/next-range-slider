@@ -12,8 +12,8 @@
     "watch:esm": "tsc --watch",
     "watch:cjs": "tsc --watch --module CommonJS --outDir dist/cjs",
     "build": "rm -rf dist/ && prettier --write src/ && npm-run-all build:cjs build:esm",
-    "build:esm": "tsc && cp src/components/*.css dist/esm/components",
-    "build:cjs": "tsc --module CommonJS --outDir dist/cjs && cp src/components/*.css dist/cjs/components"
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
   },
   "author": {
     "name": "Abhinav Robinson",

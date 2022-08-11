@@ -1,5 +1,4 @@
 import React, { CSSProperties } from 'react';
-import './styles.css';
 
 export type Themes = 'default' | 'dark';
 
@@ -89,8 +88,6 @@ const presets = {
   }
 };
 
-const miscStyle = { color: 'red', backgroundColor: 'white', fontWeight: 'bold' };
-
 function updateInputValues(e: React.FormEvent<HTMLInputElement>) {
   let _t = e.target as HTMLInputElement;
   _t.parentElement?.style.setProperty(`--${_t.id}`, _t.value);
@@ -133,8 +130,7 @@ export function ReactRangeSlider(props: ReactRangeSliderProps): JSX.Element {
   let { theme = 'default', leftInputProps, rightInputProps } = { ...options };
 
   /** SANITY CHECKS */
-  if (min > max) return <div style={miscStyle}>Min &gt; Max, misconsfigured props</div>;
-  if (step === undefined || step < 1) step = 1;
+  if (min > max) throw 'min must be less than max';
 
   /** OVERRIDE PROPS */
   let _leftInputProps: ReactInputProps = { ...leftInputProps },
