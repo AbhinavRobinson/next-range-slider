@@ -12,7 +12,7 @@ export type ThumbProps = {
   focusBackground?: string;
   width?: string;
   height?: string;
-  /** defauts to Y(-25%) in preset theme */
+  /** defauts to translateY(-25%) in preset theme */
   transform?: string;
   borderRadius?: string;
   border?: string;
@@ -111,7 +111,7 @@ export function ReactRangeSlider(props: ReactRangeSliderProps): JSX.Element {
   let { theme = 'default', leftInputProps, rightInputProps } = { ...options };
 
   /** SANITY CHECKS */
-  if (min > max) throw 'min must be less than max';
+  if (min > max) throw new Error('react-range-slider: min must be less than max in component props.');
 
   /** OVERRIDE PROPS */
   let _leftInputProps: ReactInputProps = { ...leftInputProps },
