@@ -19,7 +19,7 @@
     "build:esm": "tsc",
     "build:css": "cp *.css dist/",
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "author": {
     "name": "Abhinav Robinson",
