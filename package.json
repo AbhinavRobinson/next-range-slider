@@ -7,6 +7,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhinavrobinson/next-range-slider.git"
+  },
   "scripts": {
     "watch": "npm-run-all watch:esm watch:cjs",
     "watch:esm": "tsc --watch",

@@ -1,6 +1,6 @@
 # Next Range Slider
 
-![Preview Image](docs/images/slider.jpg)
+[![Preview Image](docs/images/slider.jpg)](https://github.com/AbhinavRobinson/next-range-slider/blob/main/docs/images/slider.jpg)
 
 A minimal range slider component for React, compatible with NextJS.
 
