@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 
-export type Themes = 'default' | 'dark';
+export type Themes = 'default';
 
 export type RangeProps = {
   background?: string;
@@ -12,7 +12,7 @@ export type ThumbProps = {
   focusBackground?: string;
   width?: string;
   height?: string;
-  /** defauts to Y(-25%) in preset themes */
+  /** defauts to Y(-25%) in preset theme */
   transform?: string;
   borderRadius?: string;
   border?: string;
@@ -53,25 +53,6 @@ const presets = {
     '--thfc': '#444',
     '--tcol': '#ccc',
     '--rcol': '#555',
-    '--rb': 'none',
-    '--thw': '2rem',
-    '--thh': '2rem',
-    '--tht': 'translateY(-25%)',
-    '--thbr': '1rem',
-    '--thb': 'none',
-    '--tt': 'none',
-    '--tw': '100%',
-    '--th': '1rem',
-    '--tm': '1rem auto',
-    '--tp': '0',
-    '--tb': 'none',
-    '--tbr': '1rem'
-  },
-  dark: {
-    '--thc': '#eee',
-    '--thfc': '#fff',
-    '--tcol': '#333',
-    '--rcol': '#888',
     '--rb': 'none',
     '--thw': '2rem',
     '--thh': '2rem',
