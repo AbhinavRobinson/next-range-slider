@@ -18,7 +18,8 @@
     "build": "rm -rf dist/ && prettier --write src/ && npm-run-all build:cjs build:esm build:css",
     "build:esm": "tsc",
     "build:css": "cp *.css dist/",
-    "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
     "name": "Abhinav Robinson",
