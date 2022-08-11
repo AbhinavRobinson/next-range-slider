@@ -1,5 +1,7 @@
 # React Range Slider
 
+![Preview Image](docs/images/slider.jpg)
+
 A minimal range slider component for React, compatible with NextJS.
 
 ## Installation
@@ -92,3 +94,7 @@ type TrackProps = {
   padding?: string;
 };
 ```
+
+## Extending Functionality
+
+The component is isolated to the component file `src/components/ReactRangeSlider.tsx` and it's CSS file `main.css`. You can clone and add your own default theme, as well as extend by adding more themes and tweaking css files.
