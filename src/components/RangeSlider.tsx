@@ -74,10 +74,10 @@ function updateInputValues(e: React.FormEvent<HTMLInputElement>) {
   _t.parentElement?.style.setProperty(`--${_t.id}`, _t.value);
 }
 
-function minMaxTags(min: number, max: number) {
+function minMaxTags(min: number, max: number, lValue: number, rValue: number) {
   return {
-    '--a': min,
-    '--b': max,
+    '--a': lValue,
+    '--b': rValue,
     '--min': min,
     '--max': max
   };
@@ -119,7 +119,7 @@ export function RangeSlider(props: RangeSliderProps): JSX.Element {
   let _style = {
     ...style,
     ...getTheme(theme, options),
-    ...minMaxTags(min, max)
+    ...minMaxTags(min, max, Number(_leftInputProps.value ?? 0), Number(_rightInputProps.value ?? 0))
   } as CSSProperties;
 
   return (
