@@ -1,5 +1,12 @@
 # Next Range Slider
 
+![dow](https://badgen.net/npm/dt/next-range-slider)
+![lis](https://badgen.net/npm/license/next-range-slider)
+![min](https://badgen.net/bundlephobia/min/next-range-slider)
+![miz](https://badgen.net/bundlephobia/minzip/next-range-slider)
+![dep](https://badgen.net/bundlephobia/dependency-count/next-range-slider)
+![tree](https://badgen.net/bundlephobia/tree-shaking/next-range-slider)
+
 [![Preview Image](docs/images/slider.jpg)](https://github.com/AbhinavRobinson/next-range-slider/blob/main/docs/images/slider.jpg)
 
 A minimal range slider component for React, compatible with NextJS.
