@@ -1,51 +1,5 @@
-import React, { CSSProperties } from 'react';
-
-export type Themes = 'default';
-
-export type RangeProps = {
-  background?: string;
-  border?: string;
-};
-
-export type ThumbProps = {
-  background?: string;
-  focusBackground?: string;
-  width?: string;
-  height?: string;
-  /** defauts to translateY(-25%) in preset theme */
-  transform?: string;
-  borderRadius?: string;
-  border?: string;
-};
-
-export type TrackProps = {
-  background?: string;
-  width?: string;
-  height?: string;
-  transform?: string;
-  borderRadius?: string;
-  border?: string;
-  margin?: string;
-  padding?: string;
-};
-
-export type RangeSliderOptions = {
-  theme?: Themes;
-  thumb?: ThumbProps;
-  track?: TrackProps;
-  range?: RangeProps;
-  leftInputProps?: ReactInputProps;
-  rightInputProps?: ReactInputProps;
-};
-
-export type ReactInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
-
-export type RangeSliderProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
-  min: number;
-  max: number;
-  step?: number;
-  options?: RangeSliderOptions;
-};
+import type { CSSProperties, FormEvent } from 'react';
+import type { RangeSliderOptions, RangeSliderProps, ReactInputProps, Themes } from './';
 
 const presets = {
   default: {
@@ -69,7 +23,7 @@ const presets = {
   }
 };
 
-function updateInputValues(e: React.FormEvent<HTMLInputElement>) {
+function updateInputValues(e: FormEvent<HTMLInputElement>) {
   let _t = e.target as HTMLInputElement;
   _t.parentElement?.style.setProperty(`--${_t.id}`, _t.value);
 }
