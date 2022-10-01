@@ -105,3 +105,7 @@ type TrackProps = {
 ## Extending Functionality
 
 The component is isolated to the component file `src/components/RangeSlider.tsx` and it's CSS file `main.css`. You can clone and add your own default theme, as well as extend by adding more themes and tweaking css files.
+
+## Authors
+
+- [@AbhinavRobinson](https://github.com/AbhinavRobinson)
