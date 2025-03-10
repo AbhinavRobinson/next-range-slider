@@ -1,7 +1,7 @@
 {
   "name": "next-range-slider",
-  "version": "1.0.5",
-  "description": "A React component for range slider",
+  "version": "2.0.0",
+  "description": "A React component for range slider, for React >=19",
   "keywords": [
     "react",
     "nextjs",
@@ -40,17 +40,17 @@
   },
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
-    "@types/node": "^18.6.4",
-    "@types/react": "^18.0.15",
-    "@types/react-dom": "^18.0.6",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.7.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^4.6.4"
+    "prettier": "^3",
+    "react": "^19",
+    "react-dom": "^19",
+    "typescript": "^5"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19",
+    "react-dom": "^19"
   }
 }

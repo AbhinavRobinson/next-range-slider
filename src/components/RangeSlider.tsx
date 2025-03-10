@@ -1,4 +1,4 @@
-import type { CSSProperties, FormEvent } from 'react';
+import type { CSSProperties, FormEvent, JSX } from 'react';
 import type { RangeSliderOptions, RangeSliderProps, ReactInputProps, Themes } from './';
 
 const presets = {
