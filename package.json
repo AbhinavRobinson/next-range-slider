@@ -1,6 +1,6 @@
 {
   "name": "next-range-slider",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A React component for range slider, for React >=19",
   "keywords": [
     "react",
